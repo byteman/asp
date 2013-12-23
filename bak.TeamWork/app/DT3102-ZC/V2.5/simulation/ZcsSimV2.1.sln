@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DeviceViewStartUp", "..\..\..\..\simulation\V1.0\DeviceViewStartUp\DeviceViewStartUp.vcxproj", "{3C6D593F-ABB8-41F2-BE8C-8DB54029F672}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZCSV2.1", "ZCS\ZCSV2.1.vcxproj", "{D0E8DE0C-7FFC-476C-8105-46F882B9B03E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C6D593F-ABB8-41F2-BE8C-8DB54029F672}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3C6D593F-ABB8-41F2-BE8C-8DB54029F672}.Debug|Win32.Build.0 = Debug|Win32
+		{3C6D593F-ABB8-41F2-BE8C-8DB54029F672}.Release|Win32.ActiveCfg = Release|Win32
+		{3C6D593F-ABB8-41F2-BE8C-8DB54029F672}.Release|Win32.Build.0 = Release|Win32
+		{D0E8DE0C-7FFC-476C-8105-46F882B9B03E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D0E8DE0C-7FFC-476C-8105-46F882B9B03E}.Debug|Win32.Build.0 = Debug|Win32
+		{D0E8DE0C-7FFC-476C-8105-46F882B9B03E}.Release|Win32.ActiveCfg = Release|Win32
+		{D0E8DE0C-7FFC-476C-8105-46F882B9B03E}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

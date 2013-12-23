@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="DemoEp.cpp">
+      <Filter>user</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>user</Filter>
+    </ClCompile>
+    <ClCompile Include="EpSelectDlg.cpp">
+      <Filter>user</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>user</Filter>
+    </ClCompile>
+    <ClCompile Include="ZcsEp.cpp">
+      <Filter>user</Filter>
+    </ClCompile>
+    <ClCompile Include="ZcsAdp.cpp">
+      <Filter>Adp</Filter>
+    </ClCompile>
+    <ClCompile Include="MultimediaTimer.cpp">
+      <Filter>user</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\STM32F407-SCS-ZC\App\business\sys_config.c">
+      <Filter>Adp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\STM32F407-SCS-ZC\App\algorim\ADCValueCheck.c">
+      <Filter>Algorim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\STM32F407-SCS-ZC\App\algorim\AlexParser.c">
+      <Filter>Algorim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\STM32F407-SCS-ZC\App\algorim\DigSample.c">
+      <Filter>Algorim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\STM32F407-SCS-ZC\App\algorim\DyncAlexParserThree.c">
+      <Filter>Algorim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\STM32F407-SCS-ZC\App\algorim\DyncAlexParserTwo.c">
+      <Filter>Algorim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\STM32F407-SCS-ZC\App\algorim\DyncProc.c">
+      <Filter>Algorim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\STM32F407-SCS-ZC\App\algorim\DyncSensorGetAxisAlgo.c">
+      <Filter>Algorim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\STM32F407-SCS-ZC\App\algorim\DyncZerolize.c">
+      <Filter>Algorim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\STM32F407-SCS-ZC\App\algorim\FirFilterAdp.c">
+      <Filter>Algorim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\STM32F407-SCS-ZC\App\algorim\LineFit.c">
+      <Filter>Algorim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\STM32F407-SCS-ZC\App\algorim\Mode7AlexParser.c">
+      <Filter>Algorim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\STM32F407-SCS-ZC\App\algorim\StandlizeAdp.c">
+      <Filter>Algorim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\STM32F407-SCS-ZC\App\algorim\StateCheck.c">
+      <Filter>Algorim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\STM32F407-SCS-ZC\App\algorim\StaticProc.c">
+      <Filter>Algorim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\STM32F407-SCS-ZC\App\algorim\weight.c">
+      <Filter>Algorim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\STM32F407-SCS-ZC\App\business\wet_algorim.c">
+      <Filter>Algorim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\STM32F407-SCS-ZC\App\algorim\ZeroTrace.c">
+      <Filter>Algorim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\STM32F407-SCS-ZC\App\business\axle_business.c">
+      <Filter>bussiness</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\STM32F407-SCS-ZC\App\thread\business_thread.c">
+      <Filter>bussiness</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\STM32F407-SCS-ZC\App\business\car_business.c">
+      <Filter>bussiness</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\STM32F407-SCS-ZC\App\business\car_kg_calc.c">
+      <Filter>bussiness</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\STM32F407-SCS-ZC\App\business\car_queue.c">
+      <Filter>bussiness</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\STM32F407-SCS-ZC\App\business\overtime_queue.c">
+      <Filter>bussiness</Filter>
+    </ClCompile>
+    <ClCompile Include="ZcsDlg.cpp">
+      <Filter>user</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="EpSelectDlg.h">
+      <Filter>user</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>user</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>user</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>user</Filter>
+    </ClInclude>
+    <ClInclude Include="adp\sys_config.h">
+      <Filter>Adp</Filter>
+    </ClInclude>
+    <ClInclude Include="ZcsEp.h">
+      <Filter>user</Filter>
+    </ClInclude>
+    <ClInclude Include="ZcsAdp.h">
+      <Filter>Adp</Filter>
+    </ClInclude>
+    <ClInclude Include="MultimediaTimer.h">
+      <Filter>user</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\STM32F407-SCS-ZC\App\Inc\algorim\ADCValueCheck.h">
+      <Filter>Algorim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\STM32F407-SCS-ZC\App\Inc\algorim\AlexParser.h">
+      <Filter>Algorim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\STM32F407-SCS-ZC\App\Inc\algorim\DigSample.h">
+      <Filter>Algorim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\STM32F407-SCS-ZC\App\Inc\algorim\DyncAlexParserThree.h">
+      <Filter>Algorim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\STM32F407-SCS-ZC\App\Inc\algorim\DyncAlexParserTwo.h">
+      <Filter>Algorim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\STM32F407-SCS-ZC\App\Inc\algorim\DyncProc.h">
+      <Filter>Algorim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\STM32F407-SCS-ZC\App\Inc\algorim\DyncSensorGetAxisAlgo.h">
+      <Filter>Algorim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\STM32F407-SCS-ZC\App\Inc\algorim\DyncZerolize.h">
+      <Filter>Algorim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\STM32F407-SCS-ZC\App\Inc\algorim\FirFilter.h">
+      <Filter>Algorim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\STM32F407-SCS-ZC\App\Inc\algorim\LineFit.h">
+      <Filter>Algorim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\STM32F407-SCS-ZC\App\Inc\algorim\Mode7AlexParser.h">
+      <Filter>Algorim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\STM32F407-SCS-ZC\App\Inc\algorim\Standlize.h">
+      <Filter>Algorim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\STM32F407-SCS-ZC\App\Inc\algorim\StateCheck.h">
+      <Filter>Algorim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\STM32F407-SCS-ZC\App\Inc\algorim\StaticProc.h">
+      <Filter>Algorim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\STM32F407-SCS-ZC\App\Inc\algorim\weight.h">
+      <Filter>Algorim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\STM32F407-SCS-ZC\App\Inc\business\wet_algorim.h">
+      <Filter>Algorim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\STM32F407-SCS-ZC\App\Inc\algorim\ZeroTrace.h">
+      <Filter>Algorim</Filter>
+    </ClInclude>
+    <ClInclude Include="ZcsDlg.h">
+      <Filter>user</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="res\DemoEp.rc2">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="DemoEp.def">
+      <Filter>user</Filter>
+    </None>
+    <None Include="ReadMe.txt">
+      <Filter>user</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="user">
+      <UniqueIdentifier>{9d499841-db19-4c2d-87da-91d123081346}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{e68e38ed-eb8e-4dec-8661-347bc5d662aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Algorim">
+      <UniqueIdentifier>{0ceaa955-c94e-44af-bb52-93dba8d95150}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Adp">
+      <UniqueIdentifier>{a0ba2d13-5bdf-4b19-99a8-f83be90120cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bussiness">
+      <UniqueIdentifier>{139cdbb7-b882-43ef-b1be-3457d77c26bb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DemoEp.rc">
+      <Filter>Resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
