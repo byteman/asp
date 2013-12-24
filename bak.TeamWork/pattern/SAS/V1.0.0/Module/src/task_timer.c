@@ -131,7 +131,7 @@ static void TaskTimer_1ms(void)
 			SencdTick = 0;	
 			//网络升级超时机制
 			NetUpdate_Overtime_Business();
-			PostWindowMsg(g_pCurWindow,WM_TIMEUPDATE, 0, 0);
+			//PostWindowMsg(g_pCurWindow,WM_TIMEUPDATE, 0, 0);
 		}
 	}
 }

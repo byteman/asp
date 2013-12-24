@@ -43,31 +43,48 @@ static void Form_Main_Timer(void *ptmr, void *parg);
 static void Form_Main_Draw(LPWindow pWindow);
 static void Form_Main_Proc(LPWindow pWindow, LPGuiMsgInfo pGuiMsgInfo);
 
-DEF_SMALL_FLOAT_LABLE(mAxleVal, &gWD_Main, 5,   46,  60,  14, CTRL_VISABLE, &GUI_fAxleWet,  0, -5, 100000, "",   TA_CENTER);
+//DEF_SMALL_FLOAT_LABLE(mAxleVal, &gWD_Main, 5,   46,  60,  14, CTRL_VISABLE, &GUI_fAxleWet,  0, -5, 100000, "",   TA_CENTER);
 
-DEF_STATUS_IMAGE_CTRL(m_Zero,   &gWD_Main, 205, 23, 14,  14, CTRL_VISABLE, Img_zero, Img_nonezero, TRUE);
+DEF_STATUS_IMAGE_CTRL(m_Zero,   &gWD_Main, 225, 8, 14,  14, CTRL_VISABLE,  Img_zero, Img_nonezero, TRUE);
 DEF_STATUS_IMAGE_CTRL(m_Steady, &gWD_Main, 225, 22, 14,  14, CTRL_VISABLE, Img_steady, Img_unsteady, TRUE);
-DEF_TEXT_LABEL(mGUI_fTotalWet,          &gWD_Main, 85,  58, 30,   14, CTRL_VISABLE, "总重");
-DEF_BIG_FLOAT_LABLE(mGUI_fTotalWetValue,  &gWD_Main, 120, 50, 100,  30, CTRL_VISABLE, &GUI_fTotalWet,  0, -1000, 1000000, "",   TA_RIGHT);
 
-DEF_SMALL_FLOAT_LABLE(mSpeed,   &gWD_Main, 10,  107, 70,  14, CTRL_VISABLE, &GUI_fSpeed, 1,  -100, 100, "km/h", TA_CENTER);
-DEF_TEXT_LABEL(mGUI_fWetAll,         &gWD_Main, 85,  107, 60,  14, CTRL_VISABLE, "整秤重量:");
+DEF_TEXT_LABEL(mGUI_fTotalWet,              &gWD_Main, 30, 65, 30,  14, CTRL_VISABLE, "总重");
+DEF_SMALL_FLOAT_LABLE(mGUI_fTotalWetValue,  &gWD_Main, 10, 85, 50,  14, CTRL_VISABLE, &GUI_fTotalWet,  0, -1000, 1000000, "",   TA_RIGHT);
 
-DEF_SMALL_FLOAT_LABLE(mGUI_fWetAllValue,  &gWD_Main, 165, 107, 60,  14, CTRL_VISABLE, &GUI_fWetAll,  0, -100000, 200000, "",   TA_CENTER);
 
+DEF_TEXT_LABEL(m_labelSpeed,    &gWD_Main,  170,  65, 30,   14, CTRL_VISABLE, "车速:");
+DEF_SMALL_FLOAT_LABLE(mSpeed,   &gWD_Main,  170,  85, 50,   14, CTRL_VISABLE, &GUI_fSpeed, 1,  -100, 100, "km/h", TA_CENTER);
+//DEF_TEXT_LABEL(mGUI_fWetAll,         &gWD_Main, 85,  10, 60,  14, CTRL_VISABLE, "整秤重量:");
+
+DEF_BIG_FLOAT_LABLE(mGUI_fWetAllValue,  &gWD_Main, 0, 10, 200,  30, CTRL_VISABLE, &GUI_fWetAll,  120, -100000, 200000, "",   TA_RIGHT);
+
+DEF_TEXT_LABEL(m_labelAlex,      &gWD_Main, 100,   65, 30,   14, CTRL_VISABLE, "轴数:");
+DEF_SMALL_FLOAT_LABLE(m_labelAlexNum,  &gWD_Main, 100, 85, 50,  14, CTRL_VISABLE, &GUI_fTotalWet,  0, -1000, 1000000, "",   TA_CENTER);
+
+
+DEF_TEXT_LABEL(m_labelSysCfg,    &gWD_Main, 0,  112, 60,   14, CTRL_VISABLE, "系统设置");
+DEF_TEXT_LABEL(m_labelCalib,    &gWD_Main,  74,  112, 60,   14, CTRL_VISABLE, "标定");
+DEF_TEXT_LABEL(m_labelWetCfg,    &gWD_Main, 120,  112, 60,   14, CTRL_VISABLE, "称重设置");
+DEF_TEXT_LABEL(m_labelMenu,    &gWD_Main,   187,  112, 60,   14, CTRL_VISABLE, "主菜单");
 
 static const LPControl		marrLPControl[] = 
 {
-    &gStatusBar,
-    &mAxleVal,
+    //&gStatusBar,
+    //&mAxleVal,
     &m_Zero,
     &m_Steady,
     &mGUI_fTotalWet,
     &mGUI_fTotalWetValue,
+		&m_labelSpeed,
     &mSpeed,
     &mGUI_fWetAllValue,
-
-    &mGUI_fWetAll ,
+		&m_labelAlex,
+	&m_labelAlexNum,
+	&m_labelSysCfg,
+	&m_labelCalib,
+	&m_labelWetCfg,
+	&m_labelMenu,
+    //&mGUI_fWetAll ,
 
 };
 
@@ -93,6 +110,7 @@ static void Draw_ScalerCar_Status(void)
 	caring = CarQueue_Get_OnScaler_Count();//获取秤台上车辆个数，还需要判断秤台上重量是否大于200kg
 	
 	GUI_fWetAll = Get_Scaler_DrvWeight(); 
+#if 0
 	//实时判断秤台上是否有车，此时得到的秤台重量单位为KG
 	if(caring > 0)	
 	{
@@ -106,6 +124,8 @@ static void Draw_ScalerCar_Status(void)
 	{
 		DrawGbText("无车", 85, 22);
 	}
+#endif
+	
 }
 
 //static WetStatue wet_main = {0};
@@ -140,7 +160,7 @@ void Form_Main_Timer(void *ptmr, void *parg)
 static void UpDateVehInfo(OvertimeData *pcar, LPWindow pWindow)
 {
     char buf[16] = {0};
-
+#if 0
     if(axle_show) {
         if(GUI_fAxleWet!=Kg2CurVal(pcar->AxleWet[axle_show - 1])) {
             GUI_fAxleWet=Kg2CurVal(pcar->AxleWet[axle_show - 1]);
@@ -185,19 +205,17 @@ static void UpDateVehInfo(OvertimeData *pcar, LPWindow pWindow)
 	        DrawGbText("    ", 26, 70);
 	        break;
     }
-
+#endif
 	GUI_fSpeed = 0.1f * pcar->speed;
     
     if(GUI_fTotalWet != Kg2CurVal(pcar->TotalWet)) {
         GUI_fTotalWet = Kg2CurVal(pcar->TotalWet);
     }
-	EraseRect(120,50, 120,30);
-	EraseRect(165,107,75,14);
-	PostWindowMsg(pWindow, WM_UPDATECTRL,(u32)&mGUI_fTotalWetValue,0);
-	PostWindowMsg(pWindow, WM_UPDATECTRL,(u32)&mSpeed,0);
-    DrawGbText((char*)GetCurUnitStr(), 226, 58);   
-    DrawGbText((char*)GetCurUnitStr(), 226, 107);
-    DrawGbText((char*)GetCurUnitStr(), 65, 46); 
+	//EraseRect(120,50, 120,30);
+	//EraseRect(165,107,75,14);
+	//PostWindowMsg(pWindow, WM_UPDATECTRL,(u32)&mGUI_fTotalWetValue,0);
+	//PostWindowMsg(pWindow, WM_UPDATECTRL,(u32)&mSpeed,0);
+
 }
 
 void Form_Main_Draw(LPWindow pWindow)
@@ -228,13 +246,16 @@ void Form_Main_Draw(LPWindow pWindow)
 		}
 	}
     UpDateVehInfo(&gMainCarInfo, pWindow);
-    DrawImage(Img_Left,  1, 85, 12, 12);
-    DrawImage(Img_Right, 67, 85, 12, 12);
+//    DrawImage(Img_Left,  1, 85, 12, 12);
+//    DrawImage(Img_Right, 67, 85, 12, 12);
     
 	//画两个横线
-	DrawHoriLine(0, 16, 240);
-    DrawHoriLine(0, 100 , 240);
-    DrawVertLine(80, 16 , 112);
+  	DrawHoriLine(0, 60, 240);
+    DrawHoriLine(0, 110 , 240);
+	
+    DrawVertLine(61, 110 , 128);
+		DrawVertLine(118, 110 , 128);
+		DrawVertLine(181, 110 , 128);
 //    DrawVertLine(160, 100 , 28);
 	
 	//使能刷屏
@@ -269,12 +290,12 @@ void Form_Main_Proc(LPWindow pWindow, LPGuiMsgInfo pGuiMsgInfo)
                 CTRL_CONTENT(mGUI_fWetAllValue).nFixPoint       = 2;
 
                 CTRL_CONTENT(mGUI_fTotalWetValue).nFixPoint      = 2;
-                CTRL_CONTENT(mAxleVal).nFixPoint     = 2;
+                //CTRL_CONTENT(mAxleVal).nFixPoint     = 2;
             } else {
                 CTRL_CONTENT(mGUI_fWetAllValue).nFixPoint       = 0;
 
                 CTRL_CONTENT(mGUI_fTotalWetValue).nFixPoint      = 0;
-                CTRL_CONTENT(mAxleVal).nFixPoint     = 0;
+                //CTRL_CONTENT(mAxleVal).nFixPoint     = 0;
             }
 			pWindow->DrawFunc(pWindow);
 			break;
