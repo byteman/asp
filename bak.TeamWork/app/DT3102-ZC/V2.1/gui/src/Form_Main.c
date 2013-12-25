@@ -45,27 +45,28 @@ static void Form_Main_Proc(LPWindow pWindow, LPGuiMsgInfo pGuiMsgInfo);
 
 //DEF_SMALL_FLOAT_LABLE(mAxleVal, &gWD_Main, 5,   46,  60,  14, CTRL_VISABLE, &GUI_fAxleWet,  0, -5, 100000, "",   TA_CENTER);
 
-DEF_STATUS_IMAGE_CTRL(m_Zero,   &gWD_Main, 225, 8, 14,  14, CTRL_VISABLE,  Img_zero, Img_nonezero, TRUE);
+DEF_STATUS_IMAGE_CTRL(m_Zero,   &gWD_Main, 225, 5, 14,  14, CTRL_VISABLE,  Img_zero, Img_nonezero, TRUE);
 DEF_STATUS_IMAGE_CTRL(m_Steady, &gWD_Main, 225, 22, 14,  14, CTRL_VISABLE, Img_steady, Img_unsteady, TRUE);
 
 DEF_TEXT_LABEL(mGUI_fTotalWet,              &gWD_Main, 30, 65, 30,  14, CTRL_VISABLE, "总重");
-DEF_SMALL_FLOAT_LABLE(mGUI_fTotalWetValue,  &gWD_Main, 10, 85, 50,  14, CTRL_VISABLE, &GUI_fTotalWet,  0, -1000, 1000000, "",   TA_RIGHT);
+DEF_SMALL_FLOAT_LABLE(mGUI_fTotalWetValue,  &gWD_Main, 10, 85, 50,  14, CTRL_VISABLE, &GUI_fTotalWet,  0, -1000, 1000000, "kg",   TA_RIGHT);
 
 
-DEF_TEXT_LABEL(m_labelSpeed,    &gWD_Main,  170,  65, 30,   14, CTRL_VISABLE, "车速:");
+DEF_TEXT_LABEL(m_labelSpeed,    &gWD_Main,  170,  65, 30,   14, CTRL_VISABLE, "车速");
 DEF_SMALL_FLOAT_LABLE(mSpeed,   &gWD_Main,  170,  85, 50,   14, CTRL_VISABLE, &GUI_fSpeed, 1,  -100, 100, "km/h", TA_CENTER);
 //DEF_TEXT_LABEL(mGUI_fWetAll,         &gWD_Main, 85,  10, 60,  14, CTRL_VISABLE, "整秤重量:");
 
 DEF_BIG_FLOAT_LABLE(mGUI_fWetAllValue,  &gWD_Main, 0, 10, 200,  30, CTRL_VISABLE, &GUI_fWetAll,  120, -100000, 200000, "",   TA_RIGHT);
 
-DEF_TEXT_LABEL(m_labelAlex,      &gWD_Main, 100,   65, 30,   14, CTRL_VISABLE, "轴数:");
+DEF_TEXT_LABEL(m_labelAlex,      &gWD_Main, 100,   65, 30,   14, CTRL_VISABLE, "轴数");
 DEF_SMALL_FLOAT_LABLE(m_labelAlexNum,  &gWD_Main, 100, 85, 50,  14, CTRL_VISABLE, &GUI_fTotalWet,  0, -1000, 1000000, "",   TA_CENTER);
 
 
-DEF_TEXT_LABEL(m_labelSysCfg,    &gWD_Main, 0,  112, 60,   14, CTRL_VISABLE, "系统设置");
-DEF_TEXT_LABEL(m_labelCalib,    &gWD_Main,  74,  112, 60,   14, CTRL_VISABLE, "标定");
-DEF_TEXT_LABEL(m_labelWetCfg,    &gWD_Main, 120,  112, 60,   14, CTRL_VISABLE, "称重设置");
-DEF_TEXT_LABEL(m_labelMenu,    &gWD_Main,   187,  112, 60,   14, CTRL_VISABLE, "主菜单");
+DEF_TEXT_LABEL(m_labelSysCfg,   &gWD_Main,  10,   112,  48,   14, CTRL_VISABLE, "系统");
+DEF_TEXT_LABEL(m_labelCalib,    &gWD_Main,  58,  112,  48,   14, CTRL_VISABLE, "标定");
+DEF_TEXT_LABEL(m_labelWetCfg,   &gWD_Main,  102,  112,  48,   14, CTRL_VISABLE, "设置");
+DEF_TEXT_LABEL(m_labelMenu,     &gWD_Main,  150, 112,  48,   14, CTRL_VISABLE, "菜单");
+DEF_TEXT_LABEL(m_labelZD,       &gWD_Main,  198,  112, 48,   14, CTRL_VISABLE, "诊断");
 
 static const LPControl		marrLPControl[] = 
 {
@@ -79,11 +80,12 @@ static const LPControl		marrLPControl[] =
     &mSpeed,
     &mGUI_fWetAllValue,
 		&m_labelAlex,
-	&m_labelAlexNum,
+	//&m_labelAlexNum,
 	&m_labelSysCfg,
 	&m_labelCalib,
 	&m_labelWetCfg,
 	&m_labelMenu,
+	&m_labelZD
     //&mGUI_fWetAll ,
 
 };
@@ -206,15 +208,18 @@ static void UpDateVehInfo(OvertimeData *pcar, LPWindow pWindow)
 	        break;
     }
 #endif
+	snprintf(buf,15,"%2d 轴",pcar->AxleNum);
+	DrawGbText(buf, 100, 85);	
+		
 	GUI_fSpeed = 0.1f * pcar->speed;
     
     if(GUI_fTotalWet != Kg2CurVal(pcar->TotalWet)) {
         GUI_fTotalWet = Kg2CurVal(pcar->TotalWet);
     }
-	//EraseRect(120,50, 120,30);
-	//EraseRect(165,107,75,14);
-	//PostWindowMsg(pWindow, WM_UPDATECTRL,(u32)&mGUI_fTotalWetValue,0);
-	//PostWindowMsg(pWindow, WM_UPDATECTRL,(u32)&mSpeed,0);
+		EraseRect(10, 85, 50,     14); //total weight
+	  EraseRect(170,  85, 50,   14); //speed
+	  PostWindowMsg(pWindow, WM_UPDATECTRL,(u32)&mGUI_fTotalWetValue,0);
+	  PostWindowMsg(pWindow, WM_UPDATECTRL,(u32)&mSpeed,0);
 
 }
 
@@ -253,9 +258,10 @@ void Form_Main_Draw(LPWindow pWindow)
   	DrawHoriLine(0, 60, 240);
     DrawHoriLine(0, 110 , 240);
 	
-    DrawVertLine(61, 110 , 128);
-		DrawVertLine(118, 110 , 128);
-		DrawVertLine(181, 110 , 128);
+    DrawVertLine(48, 110 , 128);
+		DrawVertLine(92, 110 , 128);
+		DrawVertLine(140, 110 , 128);
+		DrawVertLine(188, 110 , 128);
 //    DrawVertLine(160, 100 , 28);
 	
 	//使能刷屏
@@ -321,36 +327,18 @@ void Form_Main_Proc(LPWindow pWindow, LPGuiMsgInfo pGuiMsgInfo)
 				case KEY_DOWN:
 					break;
 				case KEY_LEFT:
-					if(axle_show > 1) {
-						axle_show--;
-						UpDateVehInfo(&gMainCarInfo, pWindow);
-					 }
 					break;
 				case KEY_RIGHT:
-                    if(axle_show < gMainCarInfo.AxleNum) {
-                        axle_show++;
-                        UpDateVehInfo(&gMainCarInfo, pWindow);
-                    }
+         
 					break;
  				case KEY_OK:
 					break;
 				case KEY_AXIS:
-                    StopWindowTimer(&gWD_Main);
-                    g_pCurWindow = &gWD_Main_Axle;
-                    g_pCurWindow->pParentWindow = &gWD_Main;
-				
-					guiMsgInfo.pWindow = g_pCurWindow;
-					guiMsgInfo.ID = WM_LOAD;
-					GuiMsgQueuePost(&guiMsgInfo);
+          
 					break;
 				case KEY_CAR:
-                    StopWindowTimer(&gWD_Main);
-                    g_pCurWindow = &gWD_Main_Veh;
-                    g_pCurWindow->pParentWindow = &gWD_Main;
-					guiMsgInfo.pWindow = g_pCurWindow;
-					guiMsgInfo.ID = WM_LOAD;
-					GuiMsgQueuePost(&guiMsgInfo);
-                    break;
+              
+           break;
 				case KEY_DIAGNOSIS:
 					StopWindowTimer(&gWD_Main);
 					g_pCurWindow = &gWD_Warning;
@@ -360,12 +348,7 @@ void Form_Main_Proc(LPWindow pWindow, LPGuiMsgInfo pGuiMsgInfo)
 					GuiMsgQueuePost(&guiMsgInfo);
 					break;
 				case KEY_QUERY:
-                    StopWindowTimer(&gWD_Main);
-                    g_pCurWindow = &gWD_DataMenu;
-                    g_pCurWindow->pParentWindow = &gWD_Main;
-					guiMsgInfo.pWindow = g_pCurWindow;
-					guiMsgInfo.ID = WM_LOAD;
-					GuiMsgQueuePost(&guiMsgInfo);
+                 
 					break;
 				case KEY_UNIT:
 					StopWindowTimer(&gWD_Main);
@@ -382,22 +365,22 @@ void Form_Main_Proc(LPWindow pWindow, LPGuiMsgInfo pGuiMsgInfo)
 					break;		
                     
 				case KEY_ZERO:
-                	Scaler_Set_Zero(FALSE);
+          Scaler_Set_Zero(FALSE);
 					break;
 				default:
 					break;
 			}
 			break;
      case WM_CARIN:
-			memcpy(&gMainCarInfo, (void *)pGuiMsgInfo->wParam, sizeof(OvertimeData));
-            caring = CarQueue_Get_OnScaler_Count();
-            axle_show = 1;
-			backcarflag = FALSE;
-            UpDateVehInfo(&gMainCarInfo, pWindow);
+				memcpy(&gMainCarInfo, (void *)pGuiMsgInfo->wParam, sizeof(OvertimeData));
+				caring = CarQueue_Get_OnScaler_Count();
+				axle_show = 1;
+				backcarflag = FALSE;
+				UpDateVehInfo(&gMainCarInfo, pWindow);
 			break;
      case WM_CARBACK:
-			backcarflag = TRUE;
-	        DrawGbText("倒车", 85, 22);
+						backcarflag = TRUE;
+						//DrawGbText("倒车", 85, 22);
             break;
     	case WM_AXELADD:
 
